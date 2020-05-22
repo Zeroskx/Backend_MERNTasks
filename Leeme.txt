@@ -1,0 +1,55 @@
+Estructura de Ficheros:
+
+- config
+
+    Una carpeta con archivos encargados de las funciones basicas para correr nuestro servidor. Ejemplo, tenemos alli definida la conexion a la base de datos,
+    independientemente si esta es llamada a ejecutar en index.
+
+- routes:
+
+    Contendra todo lo encargado de contener todos los archivos manejadores de los endpoints de las apis. De manera predeterminada el servidor se montara en un index.js, luego buscara en los endpoints definidos segun el request que llegue.
+
+    Por eso tenemos en index:
+
+    app.use('/api/usuarios', require('./routes/usuarios'));
+
+    Donde definimos que si van a dicha url, ir al modulo definido en require.
+
+    Dentro de dicho archivo (routes/usuarios.js) tendremos:
+
+    router.post('/',       < - Si tenemos un request de POST hara lo que esta en... v
+    usuarioController.crearUsuario           < - Archivo usuarioController, funcion crearUsuario
+    );
+
+    Quiere decir que al ser invocado en dicha ruta (Definida en index) Ejecutaremos un CONTROLADOR que es otra carpeta con las funciones a Ejecutaremos
+
+
+- controllers:
+
+    Contendra los archivos con las funciones a ejecutar, ejemplo, antes estamos definiendo el archivo en (controllers/usuarioController.js) en la funcion crearUsuario, 
+    entonces hacer un request del verbo POST a /api/usuarios ejecutara lo que este alli, osea,
+
+    exports.crearUsuario = (req, res) => {
+    console.log(req.body);  << el req. contendra todo lo que estamos recibiendo, con 'res' de response, podremos responder dicha peticion
+    }
+
+- models
+
+    Dicha carpeta contendra los archivos que le daran forma o esquema a nuestra base de datos. Como estamos trabajando con Mongo, se definen las colecciones y su esquema alli 
+
+
+
+
+
+    NOTAS
+
+    ORM Validator (Mongoose)
+    Permite validar la informacion o condicionar su entrada, ejemplo con minlegth, trims, entre otros
+
+    Express Validator
+    Instalar: npm i express-validator
+    
+    Permite crear validadores con mensajes en el router, antes de pasarlo al Controlador y por ende peticion a la DB
+
+    bcryptjs permite hashear passwords
+
