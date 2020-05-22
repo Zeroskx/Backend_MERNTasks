@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json({ extended: true }));
 
 // Si no existe la variable de entorno process.env.PORT, entonces asignale el puerto 4000
-const port = process.env.port || 4000;
+const PORT = process.env.PORT || 4000;
 
 // Esto para separar los puertos de cliente Servidor: Cliente 3000 Servidor 4000
 
@@ -39,6 +39,6 @@ app.use('/api/tareas', require('./routes/tareas'));
 
 // Arrancar la app
 
-app.listen(port, '0.0.0.0', () => {
-    console.log(`El servidor esta funcionando en el puerto ${port}`);
+app.listen(PORT, () => {
+    console.log(`El servidor esta funcionando en el puerto ${PORT}`);
 });
